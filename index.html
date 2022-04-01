@@ -112,8 +112,12 @@
             document.getElementsByName('season').forEach(item => {
                 item.checked = false
             })
-            console.log(document.getElementsByClassName('tax-num'))
             document.getElementsByClassName('tax-num')[0].value = 0
+            taxNum = undefined;
+            rate = undefined;
+            season = undefined;
+            cost = undefined;
+            costEl.innerText = 0
         }
     </script>
 </body>
