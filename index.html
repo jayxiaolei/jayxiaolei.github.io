@@ -1,11 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-  </head>
-  <body>
-    阿金的主页
-  </body>
+    <style>
+        *,
+        ::after,
+        ::before {
+            box-sizing: border-box;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <label for="">纳税额：</label>
+            <input type="number" onchange="inputNum(event)" class="tax-num">
+        </div>
+        <div>
+            <label for="">税率：</label>
+            <span>
+                <label for="rate1">
+                    <input type="radio" name="rate" value="1" id="rate1" onchange="rateChange(event)">
+                    商业1%
+                </label>
+            </span>
+            <span>
+                <label for="rate2">
+                    <input type="radio" name="rate" value="1.2" id="rate2" onchange="rateChange(event)">
+                    服务业1.2%
+                </label>
+            </span>
+        </div>
+        <div>
+            <label for="">季度：</label>
+            <span>
+                <label for="season1">
+                    <input type="radio" name="season" value="1" id="season1" onchange="seasonChange(event)" >
+                    第一季度
+                </label>
+            </span>
+            <span>
+                <label for="season2">
+                    <input type="radio" name="season" value="2" id="season2" onchange="seasonChange(event)">
+                    第二季度
+                </label>
+            </span>
+            <span>
+                <label for="season3">
+                    <input type="radio" name="season" value="3" id="season3" onchange="seasonChange(event)">
+                    第三季度
+                </label>
+            </span>
+            <span>
+                <label for="season4">
+                    <input type="radio" name="season" value="4" id="season4" onchange="seasonChange(event)">
+                    第四季度
+                </label>
+            </span>
+        </div>
+        <div>
+            <button onclick="submit()">确定</button>
+            <button onclick="clearValue()">还原</button>
+        </div>
+
+        <div>
+            <label for="">成本：</label>
+            <span id="cost">0</span>
+        </div>
+    </div>
+
+    <script>
+        let taxNum, rate, season, cost;
+        const costEl = document.getElementById('cost')
+        const inputNum = (event) => {
+            taxNum = event.target.value
+        }
+        const rateChange = (event) => {
+            rate = Number(event.target.value)
+        }
+        const seasonChange = (event) => {
+            season = Number(event.target.value)
+        }
+        const submit = () => {
+            if (!taxNum || !rate || !season) {
+                alert('请把表单填写完整')
+                return 
+            }
+            const taxTotal = taxNum * rate * 0.01
+            if (taxTotal < 1500) {
+                cost = taxNum - (15000 * season) - (taxTotal * 20)
+            } else if(taxTotal >= 1500 && taxTotal < 7500) {
+                cost = taxNum - (15000 * season) - ((taxTotal + 1500) * 10)
+            } else if(taxTotal >=7500 && taxTotal < 40000) {
+                cost = taxNum - (15000 * season) - ((taxTotal + 10500) * 5)
+            }
+            if (cost > 0) {
+                costEl.innerText = cost
+            } else {
+                alert('您不用缴税')
+            }
+        }
+        const clearValue = () => {
+            document.getElementsByName('rate').forEach(item => {
+                item.checked = false
+            })
+            document.getElementsByName('season').forEach(item => {
+                item.checked = false
+            })
+            console.log(document.getElementsByClassName('tax-num'))
+            document.getElementsByClassName('tax-num')[0].value = 0
+        }
+    </script>
+</body>
 </html>
