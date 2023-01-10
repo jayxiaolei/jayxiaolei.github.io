@@ -96,7 +96,7 @@
                 cost = taxNum - (15000 * season) - (taxTotal * 20)
             } else if(taxTotal >= 1500 && taxTotal < 7500) {
                 cost = taxNum - (15000 * season) - ((taxTotal + 1500) * 10)
-            } else if(taxTotal >=7500 && taxTotal < 40000) {
+            } else if(taxTotal >=7500 && taxTotal <= 50000) {
                 cost = taxNum - (15000 * season) - ((taxTotal + 10500) * 5)
             }
             if (cost > 0) {
