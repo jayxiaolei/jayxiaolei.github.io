@@ -18,7 +18,7 @@
 <body>
     <div class="container">
         <div>
-            <label for="">纳税额：</label>
+            <label for="">总收入：</label>
             <input type="number" onchange="inputNum(event)" class="tax-num">
         </div>
         <div>
@@ -98,6 +98,18 @@
                 cost = taxNum - (15000 * season) - ((taxTotal + 1500) * 10)
             } else if(taxTotal >=7500 && taxTotal <= 70000) {
                 cost = taxNum - (15000 * season) - ((taxTotal + 10500) * 5)
+            }
+            if (season === 1 && taxNum > 15000 && taxNum < 20000) {
+                cost = taxNum - 15000
+            }
+            if (season === 2 && taxNum > 30000 && taxNum < 40000) {
+                cost = taxNum - 30000
+            }
+            if (season === 3 && taxNum > 45000 && taxNum < 60000) {
+                cost = taxNum - 45000
+            }
+            if (season === 4 && taxNum > 60000 && taxNum < 80000) {
+                cost = taxNum - 60000
             }
             if (cost > 0) {
                 costEl.innerText = cost
