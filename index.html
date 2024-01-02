@@ -112,7 +112,7 @@
                 cost = taxNum - 60000
             }
             if (cost > 0) {
-                costEl.innerText = cost
+                costEl.innerText = cost.toFixed(2);
             } else {
                 alert('成本为零')
             }
